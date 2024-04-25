@@ -50,7 +50,7 @@ public class CatController {
         for (Cat cat : catService.getCats()) {
             if(cat.getName().equals(cat_name)){cat.setColor(cat_color);}
         }
-
+        catService.addCatTofile();
         model.addAttribute("cats", catService.getCats());
         return "changecolor";
     }
@@ -75,7 +75,7 @@ public class CatController {
         List<Cat> cats = catService.getCats();
         Cat cat = new Cat(cats.size() + 1, cat_name, cat_color, age);
         cats.add(cat);
-        //catService.addCatTofile(cat);
+        catService.addCatTofile();
         model.addAttribute("cats", cats);
 
         } catch (NumberFormatException e) {
