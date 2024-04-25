@@ -40,4 +40,22 @@ public class CatController {
 
         return "readfile";
     }
+    @GetMapping("/changecolor")
+    public String changeColor(@RequestParam(name = "cat_name", defaultValue = "") String cat_name, Model model) {
+        model.asMap().put("cat_name", cat_name);
+        //catService.
+        return "changecolor";
+    }
+    @GetMapping("/deletecat")
+    public String deleteCat(@RequestParam(name = "cat_name", defaultValue = "") String cat_name, Model model) {
+        model.asMap().put("cat_name", cat_name);
+        //catService.
+        return "deletecat";
+    }
+    @GetMapping("/addnewcat")
+    public String addNewCat(@RequestParam(name = "cat_name", defaultValue = "") String cat_name, Model model) {
+        model.asMap().put("cat_name", cat_name);
+        //catService.
+        return "addnewcat";
+    }
 }

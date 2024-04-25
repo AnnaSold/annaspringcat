@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 @Service
 public class CatService {
-    List<Cat> catList = new ArrayList<>();
+    List<Cat> cats = new ArrayList<>();
 
     public void readFile (String filename) throws Exception {
         Scanner scan = new Scanner(new File(filename));
@@ -19,14 +19,14 @@ public class CatService {
             String color = scan.next();
             double age = scan.nextDouble();
             Cat cat = new Cat(id, name, color, age);
-            catList.add(cat);
+            cats.add(cat);
         }
-        System.out.println(catList);
+        System.out.println(cats);
         scan.close();
     }
 
     public List<Cat> getCats(){
-        return catList;
+        return cats;
     }
 
 }

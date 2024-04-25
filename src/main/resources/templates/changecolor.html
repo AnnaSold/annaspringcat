@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Список котиков</title>
+</head>
+<body>
+<form>
+    <p>Выберите имя котика, у которого хотите выбрать цвет</p>
+    <p><input placeholder="" name="cat_name"></p>
+
+    <p><button formaction="/changecolor">Ввести имя</button></p>
+</form>
+
+<div th:each="cat : ${cats}">
+    <p>
+        id <span th:text="${cat.id}"/>  Имя: <span th:text="${cat.name}"/> цвет: <span th:text="${cat.color}"/> возраст <span th:text="${cat.age}"/>
+    </p>
+</div>
+<p> </p>
+<p> <span th:text="${errorMsg}" /></p>
+
+</body>
+</html>
