@@ -31,7 +31,6 @@ public class CatController {
 
             catService.readFile(filename);
 
-
             model.addAttribute("cats", catService.getCats());
         } catch (FileNotFoundException e) {
             model.addAttribute("errorMsg", "файл не найден");
@@ -69,6 +68,7 @@ public class CatController {
         List<Cat> cats = catService.getCats();
         Cat cat = new Cat(cats.size() + 1, cat_name, cat_color, age);
         cats.add(cat);
+        //catService.addCatTofile(cat);
         model.addAttribute("cats", cats);
 
         } catch (NumberFormatException e) {
