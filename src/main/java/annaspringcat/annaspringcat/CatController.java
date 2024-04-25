@@ -42,9 +42,16 @@ public class CatController {
     }
 
     @GetMapping("/changecolor")
-    public String changeColor(@RequestParam(name = "cat_name", defaultValue = "") String cat_name, Model model) {
+    public String changeColor(@RequestParam(name = "cat_name", defaultValue = "") String cat_name,
+                              @RequestParam(name = "cat_color", defaultValue = "") String cat_color,Model model) {
         model.asMap().put("cat_name", cat_name);
-        //catService.
+        model.asMap().put("cat_color", cat_color);
+
+        for (Cat cat : catService.getCats()) {
+            if(cat.getName().equals(cat_name)){cat.setColor(cat_color);}
+        }
+
+        model.addAttribute("cats", catService.getCats());
         return "changecolor";
     }
 
