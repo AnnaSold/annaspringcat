@@ -31,31 +31,49 @@ public class CatController {
 
             catService.readFile(filename);
 
+
             model.addAttribute("cats", catService.getCats());
         } catch (FileNotFoundException e) {
             model.addAttribute("errorMsg", "файл не найден");
         } catch (Exception e) {
-            model.addAttribute("errorMsg","aaaaaa "+ e.getMessage());
+            model.addAttribute("errorMsg", "aaaaaa " + e.getMessage());
         }
 
         return "readfile";
     }
+
     @GetMapping("/changecolor")
     public String changeColor(@RequestParam(name = "cat_name", defaultValue = "") String cat_name, Model model) {
         model.asMap().put("cat_name", cat_name);
         //catService.
         return "changecolor";
     }
+
     @GetMapping("/deletecat")
     public String deleteCat(@RequestParam(name = "cat_name", defaultValue = "") String cat_name, Model model) {
         model.asMap().put("cat_name", cat_name);
         //catService.
         return "deletecat";
     }
+
     @GetMapping("/addnewcat")
-    public String addNewCat(@RequestParam(name = "cat_name", defaultValue = "") String cat_name, Model model) {
-        model.asMap().put("cat_name", cat_name);
-        //catService.
+    public String addNewCat(@RequestParam(name = "name", defaultValue = "") String cat_name,
+                            @RequestParam(name = "color", defaultValue = "") String cat_color,
+
+                            @RequestParam(name = "age", defaultValue = "") String cat_age, Model model) throws Exception {
+        try{
+        model.asMap().put("name", cat_name);
+        model.asMap().put("color", cat_color);
+        double age = Double.parseDouble(cat_age);
+
+        List<Cat> cats = catService.getCats();
+        Cat cat = new Cat(cats.size() + 1, cat_name, cat_color, age);
+        cats.add(cat);
+        model.addAttribute("cats", cats);
+
+        } catch (NumberFormatException e) {
+            model.addAttribute("errorMsg", "aaaaaa " + e.getMessage());
+        }
         return "addnewcat";
     }
 }

@@ -11,6 +11,10 @@ import java.util.Scanner;
 public class CatService {
     List<Cat> cats = new ArrayList<>();
 
+    public void setCats(List<Cat> cats) {
+        this.cats = cats;
+    }
+
     public void readFile (String filename) throws Exception {
         Scanner scan = new Scanner(new File(filename));
         while (scan.hasNextLine()) {
@@ -20,8 +24,10 @@ public class CatService {
             double age = scan.nextDouble();
             Cat cat = new Cat(id, name, color, age);
             cats.add(cat);
+
         }
         System.out.println(cats);
+
         scan.close();
     }
 
