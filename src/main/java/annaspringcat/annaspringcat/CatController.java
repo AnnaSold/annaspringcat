@@ -54,7 +54,7 @@ public class CatController {
         model.addAttribute("cats", catService.getCats());
         return "changecolor";
     }
-    @GetMapping("/")
+    @GetMapping("/addnewcatbut")
     public String toAdd(){
         return "addnewcat";
     }
@@ -86,6 +86,6 @@ public class CatController {
         } catch (NumberFormatException e) {
             model.addAttribute("errorMsg", "aaaaaa " + e.getMessage());
         }
-        return "addnewcat";
+        return "readfile";
     }
 }
