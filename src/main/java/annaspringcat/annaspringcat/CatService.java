@@ -22,15 +22,16 @@ public class CatService {
     }
 
     public void readFile (String filename) throws Exception {
-        cats = new ArrayList<>();
-        Scanner scan = new Scanner(new File(filename));
-        while (scan.hasNextLine()) {
-            int id = scan.nextInt();
-            String name = scan.next();
-            String color = scan.next();
-            double age = scan.nextDouble();
-            Cat cat = new Cat(id, name, color, age);
-            cats.add(cat);
+            cats = new ArrayList<>();
+            Scanner scan = new Scanner(new File(filename));
+            while (scan.hasNext()) {
+               // String s = scan.nextLine();
+                int id = scan.nextInt();
+                String name = scan.next();
+                String color = scan.next();
+                double age = scan.nextDouble();
+                Cat cat = new Cat(id, name, color, age);
+                cats.add(cat);
 
         }
         System.out.println(cats);
@@ -38,6 +39,14 @@ public class CatService {
         scan.close();
     }
 
+    public Cat findCat(String name) {
+        for (Cat с : cats) {
+            if (с.getName().equals(name)) {
+                return с;
+            }
+        }
+        return null;
+    }
     public void addCatTofile() {
 
         // Записать данные о коте в файл

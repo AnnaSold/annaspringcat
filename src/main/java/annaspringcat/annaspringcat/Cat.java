@@ -36,13 +36,7 @@ public class Cat {
     public void setColor(String color) {
         this.color = color;
     }
-    public Cat findCat(String name, List<Cat> cats) {
-        for (Cat с : cats) {
-            if (с.getName().equals(name)) {
-                return с;
-            }
-        }
-        return null;}
+
     @Override
     public String toString() {
         return "annaspringcat.annaspringcat.Cat{" +

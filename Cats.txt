@@ -1,3 +1,5 @@
-1 Pol amber 2,0
+1 Pol black 2,0
 2 Jerry amber 2,0
 3 Murka white 5,5
+4 Iren white 1,0
+5 Molly red 6,5
