@@ -32,7 +32,6 @@ public class CatService {
                 double age = scan.nextDouble();
                 Cat cat = new Cat(id, name, color, age);
                 cats.add(cat);
-
         }
         System.out.println(cats);
 

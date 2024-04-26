@@ -54,6 +54,11 @@ public class CatController {
         model.addAttribute("cats", catService.getCats());
         return "changecolor";
     }
+    @GetMapping("/")
+    public String toAdd(){
+        return "addnewcat";
+    }
+
 
     @GetMapping("/deletecat")
     public String deleteCat(@RequestParam(name = "cat_name", defaultValue = "") String cat_name, Model model) {

@@ -9,7 +9,8 @@
     <p>Введите имя файла</p>
     <p><input placeholder="" name="filename"></p>
 
-    <p><button formaction="/readfile">Ввести</button></p>
+    <p><button formaction="/readfile">Ввести</button></p> <p><button formaction="/addnewcat">Добавить</button></p>
+
 </form>
 
 <div th:each="cat : ${cats}">
