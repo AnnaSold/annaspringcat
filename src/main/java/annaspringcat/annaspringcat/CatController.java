@@ -43,19 +43,22 @@ public class CatController {
 
     @GetMapping("/changecolor")
     public String changeColor(@RequestParam(name = "cat_name", defaultValue = "") String cat_name,
-                              @RequestParam(name = "cat_color", defaultValue = "") String cat_color,Model model) {
+                              @RequestParam(name = "cat_color", defaultValue = "") String cat_color, Model model) {
         model.asMap().put("cat_name", cat_name);
         model.asMap().put("cat_color", cat_color);
 
         for (Cat cat : catService.getCats()) {
-            if(cat.getName().equals(cat_name)){cat.setColor(cat_color);}
+            if (cat.getName().equals(cat_name)) {
+                cat.setColor(cat_color);
+            }
         }
         catService.addCatTofile();
         model.addAttribute("cats", catService.getCats());
         return "changecolor";
     }
+
     @GetMapping("/addnewcatbut")
-    public String toAdd(){
+    public String toAdd() {
         return "addnewcat";
     }
 
@@ -70,20 +73,22 @@ public class CatController {
     @GetMapping("/addnewcat")
     public String addNewCat(@RequestParam(name = "name", defaultValue = "") String cat_name,
                             @RequestParam(name = "color", defaultValue = "") String cat_color,
-
                             @RequestParam(name = "age", defaultValue = "") String cat_age, Model model) throws Exception {
-        try{
-        model.asMap().put("name", cat_name);
-        model.asMap().put("color", cat_color);
-        double age = Double.parseDouble(cat_age);
+        try {
+            model.asMap().put("name", cat_name);
+            model.asMap().put("color", cat_color);
+            double age = Double.parseDouble(cat_age);
 
-        List<Cat> cats = catService.getCats();
-        Cat cat = new Cat(cats.size() + 1, cat_name, cat_color, age);
-        cats.add(cat);
-        catService.addCatTofile();
-        model.addAttribute("cats", cats);
+            List<Cat> cats = catService.getCats();
+            Cat cat = new Cat(cats.size() + 1, cat_name, cat_color, age);
+            // if ((cat.age> 25) || (cat.age <0)) throw new Exception()
+            cats.add(cat);
+            catService.addCatTofile();
+            model.addAttribute("cats", cats);
 
         } catch (NumberFormatException e) {
+            model.addAttribute("errorMsg", "aaaaaa " + e.getMessage());
+        } catch (Exception e) {
             model.addAttribute("errorMsg", "aaaaaa " + e.getMessage());
         }
         return "readfile";
