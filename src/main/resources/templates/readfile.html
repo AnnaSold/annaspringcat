@@ -15,7 +15,10 @@
 
 <div th:each="cat : ${cats}">
     <p>
+        <form action="/deletecatbut?cat_id=666">
       id <span th:text="${cat.id}"/>  Имя: <span th:text="${cat.name}"/> цвет: <span th:text="${cat.color}"/> возраст <span th:text="${cat.age}"/>
+    <p><input type="submit" name="cat_id" value="Удалить" >de</input></p>
+</form>
     </p>
 </div>
 <p> <span th:text="${errorMsg}" /></p>

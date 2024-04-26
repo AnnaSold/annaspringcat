@@ -46,13 +46,7 @@ public class CatController {
                               @RequestParam(name = "cat_color", defaultValue = "") String cat_color, Model model) {
         model.asMap().put("cat_name", cat_name);
         model.asMap().put("cat_color", cat_color);
-
-        for (Cat cat : catService.getCats()) {
-            if (cat.getName().equals(cat_name)) {
-                cat.setColor(cat_color);
-            }
-        }
-        catService.addCatTofile();
+        catService.changeColor(cat_name, cat_color);
         model.addAttribute("cats", catService.getCats());
         return "changecolor";
     }
@@ -63,10 +57,12 @@ public class CatController {
     }
 
 
-    @GetMapping("/deletecat")
-    public String deleteCat(@RequestParam(name = "cat_name", defaultValue = "") String cat_name, Model model) {
-        model.asMap().put("cat_name", cat_name);
-        //catService.
+    @GetMapping("/deletecatbut")
+    public String deleteCat(@RequestParam(name = "cat_id",defaultValue = "-999") String cat_id, Model model) {
+        int catId = Integer.parseInt(cat_id);
+        System.out.println(catId);
+       // catService.deleteCat(2);
+        model.addAttribute("cats", catService.getCats() );
         return "deletecat";
     }
 

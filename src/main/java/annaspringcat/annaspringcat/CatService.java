@@ -21,17 +21,17 @@ public class CatService {
         this.cats = cats;
     }
 
-    public void readFile (String filename) throws Exception {
-            cats = new ArrayList<>();
-            Scanner scan = new Scanner(new File(filename));
-            while (scan.hasNext()) {
-               // String s = scan.nextLine();
-                int id = scan.nextInt();
-                String name = scan.next();
-                String color = scan.next();
-                double age = scan.nextDouble();
-                Cat cat = new Cat(id, name, color, age);
-                cats.add(cat);
+    public void readFile(String filename) throws Exception {
+        cats = new ArrayList<>();
+        Scanner scan = new Scanner(new File(filename));
+        while (scan.hasNext()) {
+            // String s = scan.nextLine();
+            int id = scan.nextInt();
+            String name = scan.next();
+            String color = scan.next();
+            double age = scan.nextDouble();
+            Cat cat = new Cat(id, name, color, age);
+            cats.add(cat);
         }
         System.out.println(cats);
 
@@ -46,6 +46,15 @@ public class CatService {
         }
         return null;
     }
+
+    public void changeColor(String cat_name, String color) {
+        Cat cat = findCat(cat_name);
+        if (cat != null) {
+            cat.setColor(color);
+            addCatTofile();
+        }
+    }
+
     public void addCatTofile() {
 
         // Записать данные о коте в файл
@@ -53,7 +62,7 @@ public class CatService {
 
             for (Cat c : cats) {
                 String age = String.valueOf(c.getAge());
-                age  =age.replace('.',',');
+                age = age.replace('.', ',');
 
                 writer.write(c.getId() + " " + c.getName() + " " + c.getColor() + " " + age);
                 writer.newLine();
@@ -65,9 +74,12 @@ public class CatService {
 
     }
 
-    public List<Cat> getCats(){
+    public List<Cat> getCats() {
         return cats;
     }
 
+    public void deleteCat(int cat_id) {
+        cats.remove(cat_id - 1);
+    }
 
 }
